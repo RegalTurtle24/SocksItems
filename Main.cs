@@ -90,6 +90,7 @@ namespace RoR2GenericModTemplate1
         public void Instantiate()
         {
             VerifyItems(new Items.Omnis_Rend());
+            VerifyItems(new Items.Dragon_Horn());
             /*VerifyAchievements(new Examples.EXAMPLE_ACHIEVEMENT());*/
 
         }
@@ -128,20 +129,6 @@ namespace RoR2GenericModTemplate1
 
         //place other necessary methods below
 
-
-        /*private void Update()
-        {
-            // This if statement checks if the player has currently pressed F2.
-            if (Input.GetKeyDown(KeyCode.F2))
-            {
-                // Get the player body to use a position:
-                var transform = PlayerCharacterMasterController.instances[0].master.GetBodyObject().transform;
-
-                // And then drop our defined item in front of the player.
-
-                PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(myItemDef.itemIndex), transform.position, transform.forward * 20f);
-            }
-        }*/
     }
 
 }

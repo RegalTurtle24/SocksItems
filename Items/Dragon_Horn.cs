@@ -13,11 +13,11 @@ using UnityEngine.Networking;
 
 namespace RoR2GenericModTemplate1.Items
 {
-    public class Omnis_Rend : ItemBase
+    public class Dragon_Horn : ItemBase
     {
-        public override string ItemName => "Omni's Rend";
+        public override string ItemName => "Dragon Horn";
 
-        public override string ItemLangTokenName => "omnisRend";
+        public override string ItemLangTokenName => "dragonHorn";
 
         public override string ItemPickupDesc => "EXAMPLE_ITEM";
 
@@ -69,18 +69,7 @@ namespace RoR2GenericModTemplate1.Items
         public override void Hooks()
         {
 
-            On.RoR2.HealthComponent.Heal += (orig, self, amount, procChainMask, nonRegen) =>
-            {
-                float num = amount;
-                if (!NetworkServer.active) return num;
-                if (GetCount(self.body) > 0 && nonRegen)
-                {
-                    // what about 1% max health per stack
-                    // num += GetCount(self.body) * self.body.maxHealth * (float)0.02;
-                    num += 10 * GetCount(self.body);
-                }
-                return orig(self, num, procChainMask, nonRegen);
-            };
+            RecalculateStatsAPI.GetStatCoefficients += RecalculateStats;
 
         }
 
@@ -92,6 +81,25 @@ namespace RoR2GenericModTemplate1.Items
             CreateItem();
             Hooks();
 
+        }
+
+        private void RecalculateStats(CharacterBody characterBody, RecalculateStatsAPI.StatHookEventArgs args)
+        {
+            if (characterBody.inventory)
+            {
+                var count = GetCount(characterBody);
+                var crit = characterBody.crit;
+                var currentBaseDamage = characterBody.baseDamage;
+                Log.Info(crit.ToString());
+
+                if (count > 0 && crit > 100)
+                {
+                    Log.Info("before: " + characterBody.baseDamage.ToString());
+                    // 1 stack * 101% crit should give +10 base damage
+                    args.baseDamageAdd += count * ((crit - 100) * (float)0.01) * ((float)0.05 * currentBaseDamage) + 500;
+                    Log.Info("after: " + characterBody.baseDamage.ToString());
+                }
+            }
         }
     }
 }
