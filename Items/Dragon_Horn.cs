@@ -89,15 +89,13 @@ namespace RoR2GenericModTemplate1.Items
             {
                 var count = GetCount(characterBody);
                 var crit = characterBody.crit;
-                var currentBaseDamage = characterBody.baseDamage;
-                Log.Info(crit.ToString());
 
                 if (count > 0 && crit > 100)
                 {
-                    Log.Info("before: " + characterBody.baseDamage.ToString());
-                    // 1 stack * 101% crit should give +10 base damage
-                    args.baseDamageAdd += count * ((crit - 100) * (float)0.01) * ((float)0.05 * currentBaseDamage) + 500;
-                    Log.Info("after: " + characterBody.baseDamage.ToString());
+                    var fivePercentBase = (float)(characterBody.baseDamage * 0.05);
+                    var overCrit = (int)((crit - 100) / 10);
+                    // stacks * number of 10% over 100% * 5% of base damage
+                    args.baseDamageAdd += count * overCrit * fivePercentBase;
                 }
             }
         }
