@@ -13,11 +13,11 @@ using UnityEngine.Networking;
 
 namespace RoR2GenericModTemplate1.Items
 {
-    public class Omnis_Rend : ItemBase
+    public class Dragon_Horn : ItemBase
     {
-        public override string ItemName => "Omni's Rend";
+        public override string ItemName => "Dragon Horn";
 
-        public override string ItemLangTokenName => "omnisRend";
+        public override string ItemLangTokenName => "dragonHorn";
 
         public override string ItemPickupDesc => "EXAMPLE_ITEM";
 
@@ -69,18 +69,7 @@ namespace RoR2GenericModTemplate1.Items
         public override void Hooks()
         {
 
-            On.RoR2.HealthComponent.Heal += (orig, self, amount, procChainMask, nonRegen) =>
-            {
-                float num = amount;
-                if (!NetworkServer.active) return num;
-                if (GetCount(self.body) > 0 && nonRegen)
-                {
-                    // what about 1% max health per stack
-                    // num += GetCount(self.body) * self.body.maxHealth * (float)0.02;
-                    num += 10 * GetCount(self.body);
-                }
-                return orig(self, num, procChainMask, nonRegen);
-            };
+            RecalculateStatsAPI.GetStatCoefficients += RecalculateStats;
 
         }
 
@@ -92,6 +81,23 @@ namespace RoR2GenericModTemplate1.Items
             CreateItem();
             Hooks();
 
+        }
+
+        private void RecalculateStats(CharacterBody characterBody, RecalculateStatsAPI.StatHookEventArgs args)
+        {
+            if (characterBody.inventory)
+            {
+                var count = GetCount(characterBody);
+                var crit = characterBody.crit;
+
+                if (count > 0 && crit > 100)
+                {
+                    var fivePercentBase = (float)(characterBody.baseDamage * 0.05);
+                    var overCrit = (int)((crit - 100) / 10);
+                    // stacks * number of 10% over 100% * 5% of base damage
+                    args.baseDamageAdd += count * overCrit * fivePercentBase;
+                }
+            }
         }
     }
 }
