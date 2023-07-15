@@ -89,8 +89,84 @@ namespace RoR2GenericModTemplate1
         //we make calls to Verify on each thing here to make our call in Awake clean
         public void Instantiate()
         {
-            VerifyItems(new Items.Omnis_Rend());
+            // whites
+            // Six Sided Die [10]
             VerifyItems(new Items.Dragon_Horn());
+            VerifyItems(new Items.Omnis_Rend());
+            // Old Notebook [7]
+            // Bottle of Mud [4]
+            // Holographic Ad [7]
+
+            // greens
+            // Bronze Vajra [8]
+            // Era Protect [4]
+            // Kjaro and Runald's Vows [8]
+            // Edge of the Storm [5]
+            // Pipe Bomb [8]
+            // Glowing Spores [6]
+            // Scarab Skull [6]
+            // Quantum Processing Unit [2]
+            // Quantum Entanglers [4]
+            // Mobius Loop [8]
+
+            // red
+            // Executioner's Blade [7]
+            // Adorable Socks [10]
+            // Legend Calendar [4]
+            // Forgive the World [7]
+            // Scars of the Broken one [2]
+            // Regalia of Dawn [5]
+            // Fissile Fuel Rod [5]
+            // Shattered Void Cube [8]
+            // Shrodinger's Cat [1]
+            // Rocket Propelled Chainsaw [5]
+            
+            // void white
+            // Twenty-One Sided Die [2] (Six-Sided Die)
+            // Ancient Heiroglyphs [1] (Old Notebook)
+            // Twisted Tincture [2] (Alternate Reality Visor; other mod)
+            // Swirling Slurry [3]
+
+            // void green
+            // Death's Touch [4] (Bronze Vajras)
+            // A Sock's Luck [4] (Defibrillator; other mod)
+            // Twisted Cordyceps [6] (Glowing Spores)
+            // Jailer's Right Hand [7] (Prison Shackles; other mod)
+            // Antimatter Pipette [4] (LETH-42; other mod)
+            // Negative Energy Generator [4] (Quantum Entanglers)
+            // Unheard Canticles [6]
+
+            // void reds
+            // Parasitic Tarantula [3] (Symbiotic Scorpion; base game)
+            // Antimatter Capsule [4] (Fissile Fuel Rods)
+            // Wretched Opal [2] (Ancient Scepter; other mod)
+            // Imitation [8]
+            
+            // Equipment
+            // Captain's Hotline [4]
+            // The Crowd [4]
+            // Elongated Knuckle Dusters [3]
+            // Balisong [5]
+            // Distress Beacon [2]
+            // Orbital Medkit [2]
+            // Pocket White Hole [3]
+            // Warp Drive [5]
+            
+            // Boss Item
+            // Hammer of Design [5] (Mithrix)
+            
+            // Lunars
+            // Moon Pie [2]
+            // Starve the Unforgotten [1]
+            // Corrupt Man's Credit Card [3]
+            // Strange Matter [5]
+            // Timerly Demise [3]
+
+            // Lunar Equip
+            // Entropy Key [2]
+
+
+
             /*VerifyAchievements(new Examples.EXAMPLE_ACHIEVEMENT());*/
 
         }
