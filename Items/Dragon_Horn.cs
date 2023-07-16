@@ -69,21 +69,11 @@ namespace RoR2GenericModTemplate1.Items
         public override void Hooks()
         {
 
-            RecalculateStatsAPI.GetStatCoefficients += RecalculateStats;
+            RecalculateStatsAPI.GetStatCoefficients += RecalculateStatsAPI_GetStatCoefficients;
 
         }
 
-        public override void Init(ConfigFile config)
-        {
-            CreateConfig(config);
-            /*CreateItemDisplayRules();*/
-            CreateLang();
-            CreateItem();
-            Hooks();
-
-        }
-
-        private void RecalculateStats(CharacterBody characterBody, RecalculateStatsAPI.StatHookEventArgs args)
+        private void RecalculateStatsAPI_GetStatCoefficients(CharacterBody characterBody, RecalculateStatsAPI.StatHookEventArgs args)
         {
             if (characterBody.inventory)
             {
@@ -98,6 +88,16 @@ namespace RoR2GenericModTemplate1.Items
                     args.baseDamageAdd += count * overCrit * fivePercentBase;
                 }
             }
+        }
+
+        public override void Init(ConfigFile config)
+        {
+            CreateConfig(config);
+            /*CreateItemDisplayRules();*/
+            CreateLang();
+            CreateItem();
+            Hooks();
+
         }
     }
 }
