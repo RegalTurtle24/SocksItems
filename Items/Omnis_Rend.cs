@@ -11,7 +11,7 @@ using static RoR2GenericModTemplate1.Utils.ItemHelper;
 using SocksNeedsItems;
 using UnityEngine.Networking;
 
-namespace RoR2GenericModTemplate1.Items
+namespace SocksNeedsItems.Items
 {
     public class Omnis_Rend : ItemBase
     {

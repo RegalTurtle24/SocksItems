@@ -11,7 +11,7 @@ using RoR2;
 using SocksNeedsItems;
 
 //automatically renamed based on project name.
-namespace RoR2GenericModTemplate1
+namespace SocksNeedsItems
 {
     //--------------R2API dependency. This template is heavily based on the modules provided by this API, so it uses it as a dependency.--------------------
     [BepInDependency(R2API.R2API.PluginGUID, R2API.R2API.PluginVersion)]
@@ -48,7 +48,7 @@ namespace RoR2GenericModTemplate1
             Log.Init(Logger);
 
             //loads an asset bundle if one exists. Objects will need to be called from this bundle using AssetBundle.LoadAsset(string path)
-            using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("RoR2GenericModTemplate1.mod_assets"))
+            using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("SocksNeedsItems.mod_assets"))
             {
 
                 if (stream != null)
