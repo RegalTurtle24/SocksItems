@@ -13,11 +13,11 @@ using UnityEngine.Networking;
 
 namespace RoR2GenericModTemplate1.Items
 {
-    public class Dragon_Horn : ItemBase
+    public class Six_Sided_Die : ItemBase
     {
-        public override string ItemName => "Dragon Horn";
+        public override string ItemName => "Six-Sided Die";
 
-        public override string ItemLangTokenName => "dragonHorn";
+        public override string ItemLangTokenName => "sixSidedDie";
 
         public override string ItemPickupDesc => "EXAMPLE_ITEM";
 
@@ -69,25 +69,33 @@ namespace RoR2GenericModTemplate1.Items
         public override void Hooks()
         {
 
-            RecalculateStatsAPI.GetStatCoefficients += RecalculateStatsAPI_GetStatCoefficients;
+            /* 15% (+5% per stack, linear) chance when healing for more than 10 % (-1% per stack, caps at 1 %
+             to trigger a random on kill effect of one of your help items on the nearest enemy. */
+            On.RoR2.HealthComponent.Heal += HealthComponent_Heal;
 
         }
 
-        private void RecalculateStatsAPI_GetStatCoefficients(CharacterBody characterBody, RecalculateStatsAPI.StatHookEventArgs args)
+        private float HealthComponent_Heal(On.RoR2.HealthComponent.orig_Heal orig, HealthComponent self, float amount, ProcChainMask procChainMask, bool nonRegen)
         {
-            if (characterBody.inventory)
+            if (!self.body.inventory)
             {
-                var count = GetCount(characterBody);
-                var crit = characterBody.crit;
+                return amount;
+            }
 
-                if (count > 0 && crit > 100)
+            var num = GetCount(self.body);
+            if (num > 0)
+            {
+                var percentOfHealth = amount / self.body.maxHealth;
+                if (percentOfHealth > Math.Max(0.11 - (num * 0.01), 0.01))
                 {
-                    var fivePercentBase = (float)(characterBody.baseDamage * 0.05);
-                    var overCrit = (int)((crit - 100) / 10);
-                    // stacks * number of 10% over 100% * 5% of base damage
-                    args.baseDamageAdd += count * overCrit * fivePercentBase;
+                    if (Util.CheckRoll(15 + (5 * (num - 1)), self.body.GetComponent<CharacterMaster>()))
+                    {
+                        var inventory = self.body.inventory;
+                        
+                    }
                 }
             }
+            return amount;
         }
 
         public override void Init(ConfigFile config)
