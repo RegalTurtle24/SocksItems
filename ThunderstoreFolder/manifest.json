@@ -1,0 +1,9 @@
+{
+  "name": "SocksItems",
+  "version_number": "0.0.1",
+  "website_url": "https://github.com/RegalTurtle24/SocksItems",
+  "description": "Adds items suggested by the youtuber SocksNeedsHelp",
+  "dependencies": [
+    "tristanmcpherson-R2API-5.0.5"
+  ]
+}
