@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 using static RoR2GenericModTemplate1.Utils.ItemHelper;
-using SocksItems;
+using SocksNeedsItems;
 using UnityEngine.Networking;
 
 namespace RoR2GenericModTemplate1.Items

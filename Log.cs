@@ -1,6 +1,6 @@
 ﻿using BepInEx.Logging;
 
-namespace SocksItems
+namespace SocksNeedsItems
 {
     internal static class Log
     {
