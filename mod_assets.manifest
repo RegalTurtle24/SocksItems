@@ -1,16 +1,41 @@
 ManifestFileVersion: 0
-CRC: 3916504266
+CRC: 513687
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: f8509bba6034467401ce0888fb606140
+    Hash: 4e830d0f38afcc918cfea6d821e83c99
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 5ad585dd02dfb5016c0dad519eab8f49
+    Hash: 03970310989e9ae0e8cd1c6f532688cc
 HashAppended: 0
 ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
 - Class: 49
   Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
 Assets:
+- Assets/Textures - PLACE TEXTURES HERE/Icons/Item/HERE_FOR_EXPORT_DO_NOT_USE.txt
+- Assets/Textures - PLACE TEXTURES HERE/Icons/Artifacts/CREATE A FOLDER FOR EACH ARTIFACT/HERE_FOR_EXPORT_DO_NOT_USE.txt
+- Assets/Textures - PLACE TEXTURES HERE/Icons/Item/cryoIcon512.png
+- Assets/Textures - PLACE TEXTURES HERE/Icons/Item/six_sided_die.png
+- Assets/Textures - PLACE TEXTURES HERE/Icons/Survivors/HERE_FOR_EXPORT_DO_NOT_USE.txt
+- Assets/Textures - PLACE TEXTURES HERE/Materials/Survivors/CREATE A FOLDER FOR EACH
+  SURVIVOR/HERE_FOR_EXPORT_DO_NOT_USE.txt
+- Assets/Textures - PLACE TEXTURES HERE/Icons/Item/bottle_of_mud.png
+- Assets/BundledAssets/bottle_of_mud.png
+- Assets/Textures - PLACE TEXTURES HERE/Materials/Monsters/CREATE A FOLDER FOR EACH
+  MONSTER/HERE_FOR_EXPORT_DO_NOT_USE.txt
+- Assets/Textures - PLACE TEXTURES HERE/Icons/Skills/HERE_FOR_EXPORT_DO_NOT_USE.txt
+- Assets/Textures - PLACE TEXTURES HERE/Icons/Buff/HERE_FOR_EXPORT_DO_NOT_USE.txt
+- Assets/BundledAssets/cryoIcon512.png
+- Assets/BundledAssets/channels4_profile.jpg
+- Assets/Textures - PLACE TEXTURES HERE/Materials/Equipment/CREATE A NEW FOLDER FOR
+  EACH EQUIPMENT - DO NOT USE THIS FOLDER/HERE_FOR_EXPORT_DO_NOT_USE.txt
 - Assets/Models - PLACE RAW MODELS HERE/Meshes/HERE_FOR_EXPORT_DO_NOT_USE.txt
+- Assets/Textures - PLACE TEXTURES HERE/Materials/Item/CREATE A NEW FOLDER FOR EACH
+  ITEM - DO NOT USE THIS FOLDER/HERE_FOR_EXPORT_DO_NOT_USE.txt
+- Assets/Textures - PLACE TEXTURES HERE/Icons/Equipment/HERE_FOR_EXPORT_DO_NOT_USE.txt
+- Assets/BundledAssets/six_sided_die.png
 Dependencies: []
