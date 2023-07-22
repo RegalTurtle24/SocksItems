@@ -8,7 +8,7 @@ using System.Reflection;
 using UnityEngine;
 
 using RoR2;
-using SocksItems;
+using SocksNeedsItems;
 
 //automatically renamed based on project name.
 namespace RoR2GenericModTemplate1

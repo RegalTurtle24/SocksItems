@@ -3,7 +3,7 @@ using R2API;
 using RoR2;
 using RoR2GenericModTemplate1.Utils;
 using UnityEngine;
-using SocksItems;
+using SocksNeedsItems;
 
 using System;
 using System.Collections.Generic;
