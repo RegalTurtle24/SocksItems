@@ -10,6 +10,7 @@ using UnityEngine;
 using static RoR2GenericModTemplate1.Utils.ItemHelper;
 using SocksNeedsItems;
 using UnityEngine.Networking;
+using System.Linq;
 
 namespace RoR2GenericModTemplate1.Items
 {
@@ -29,7 +30,7 @@ namespace RoR2GenericModTemplate1.Items
 
         public override string ItemModelPath => "null";
 
-        public override string ItemIconPath => "null";
+        public override string ItemIconPath => "six_sided_die.png";
 
         public override bool CanRemove => true;
 
@@ -90,8 +91,33 @@ namespace RoR2GenericModTemplate1.Items
                 {
                     if (Util.CheckRoll(15 + (5 * (num - 1)), self.body.GetComponent<CharacterMaster>()))
                     {
-                        var inventory = self.body.inventory;
-                        
+                        // find the closest enemy
+                        this.bullseyeSearch.teamMaskFilter = TeamMask.allButNeutral;
+                        this.bullseyeSearch.teamMaskFilter.RemoveTeam(self.body.GetComponent<CharacterMaster>().teamIndex);
+                        this.bullseyeSearch.filterByLoS = false;
+                        this.bullseyeSearch.searchOrigin = self.body.GetComponent<CharacterMaster>().transform.position;
+                        this.bullseyeSearch.searchDirection = self.body.GetComponent<CharacterMaster>().transform.forward;
+                        this.bullseyeSearch.maxDistanceFilter = 130;
+                        this.bullseyeSearch.sortMode = BullseyeSearch.SortMode.Distance;
+                        this.bullseyeSearch.maxAngleFilter = 360;
+                        this.bullseyeSearch.RefreshCandidates();
+                        IEnumerable<HurtBox> enumerable = this.bullseyeSearch.GetResults();
+                        HurtBox target = enumerable.FirstOrDefault<HurtBox>();
+                        // HealthComponent healthComponent = this.healthComponent;
+                        // DamageReport damageReport = new DamageReport(damageInfo, healthComponent, damageInfo.damage, this.healthComponent.combinedHealth);
+                        // GlobalEventManager.instance.OnCharacterDeath(damageReport);
+                        DamageInfo damageInfo = new DamageInfo
+                        {
+                            attacker = null,
+                            crit = false,
+                            damage = 0,
+                            position = self.body.GetComponent<CharacterMaster>().transform.position,
+                            procCoefficient = 1,
+                            damageType = DamageType.Generic,
+                            damageColorIndex = DamageColorIndex.Default
+                        };
+                        DamageReport damageReport = new DamageReport(damageInfo, target.healthComponent, damageInfo.damage, target.healthComponent.combinedHealth);
+                        GlobalEventManager.instance.OnCharacterDeath(damageReport);
                     }
                 }
             }
@@ -106,6 +132,9 @@ namespace RoR2GenericModTemplate1.Items
             CreateItem();
             Hooks();
 
+            this.bullseyeSearch = new BullseyeSearch();
         }
+
+        private BullseyeSearch bullseyeSearch;
     }
 }
